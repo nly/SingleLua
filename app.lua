@@ -6,6 +6,6 @@
 --
 
 app_path = "app"
-app_config = require(app_path .. ".config.app")
+
 local kernel = require(app_path .. ".kernel")
 kernel.run();
