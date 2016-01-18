@@ -8,12 +8,12 @@
 local _B = {}
 
 function _B.initTest()
-    ngx.say(container['ctr_file'])
-    ngx.say("Test")
+    --ngx.say(container['ctr_file'])
+    --ngx.say("Test")
 end
 
 function _B.initDb()
-    ngx.say("Db")
+    --ngx.say("Db")
 end
 
 return _B;
