@@ -5,9 +5,8 @@
 -- Time: 下午12:17
 --
 
-root_path = "/Users/leandre/Works/Codingx"
+root_path = ngx.var.document_root
 app_path = "app"
 
-
 local kernel = require(app_path .. ".kernel")
-kernel.run();
+kernel:run();

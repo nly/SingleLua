@@ -7,12 +7,12 @@
 
 local _B = {}
 
-function _B.initTest()
+function _B:initTest()
     --ngx.say(container['ctr_file'])
     --ngx.say("Test")
 end
 
-function _B.initDb()
+function _B:initDb()
     --ngx.say("Db")
 end
 

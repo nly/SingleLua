@@ -7,7 +7,7 @@
 
 local _M = {}
 
-function _M.index()
+function _M:index()
     ngx.say("index");
 end
 

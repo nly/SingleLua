@@ -13,7 +13,7 @@ local _K = {}
 
 --- call bootstrap function list
 --
-local function bootstrap()
+function _K:bootstrap()
     local bootstrap = require(app_path .. ".bootstrap")
     for k, v in pairs(bootstrap) do
         if string.sub(k, 1, 4) == "init" then
@@ -24,7 +24,7 @@ end
 
 --- not found
 --
-local function not_found()
+function _K:not_found()
     ngx.status = 404
     ngx.say("File not found.")
     ngx.exit(404)
@@ -32,13 +32,12 @@ end
 
 --- kernel run
 --
-function _K.run()
-
+function _K:run()
     local uri_arr = tools.array_filter(tools.lua_string_split("/", ngx.var.uri))
     local ctr_file = tools.lua_string_merge(".", uri_arr);
     container['ctr_file'] = ctr_file
 
-    bootstrap()
+    self:bootstrap()
 
     ctr_file = app_config["ctr_path"] .. container["ctr_file"];
 
@@ -46,17 +45,19 @@ function _K.run()
 
     if ctr_cache == nil then
         local ctr_realpath = root_path .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
-        if io.open(ctr_realpath, "r") == nil then
+        local file = io.open(ctr_realpath, "r")
+        if file == nil then
             ngx.shared.ctrs:set(ctr_file, 0)
-            not_found()
+            self:not_found()
         else
             ngx.shared.ctrs:set(ctr_file, 1)
         end
+        io.close(file)
     elseif ctr_cache == 0 then
-        not_found()
+        self:not_found()
     end
     local ctr = require(ctr_file)
-    ctr.index()
+    ctr:index()
 end
 
 return _K;
