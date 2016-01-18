@@ -25,9 +25,9 @@ end
 --- not found
 --
 function _K:not_found()
-    ngx.status = 404
+    ngx.status = ngx.HTTP_NOT_FOUND
     ngx.say("File not found.")
-    ngx.exit(404)
+    ngx.exit(ngx.HTTP_NOT_FOUND)
 end
 
 --- kernel run
