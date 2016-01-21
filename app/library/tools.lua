@@ -5,7 +5,7 @@
 -- Time: 下午1:47
 --
 
-local _M = {}
+local _M = { _VERSION = 0.1 }
 
 --- string explode
 -- @param split_char
@@ -31,7 +31,7 @@ end
 -- @param arr
 --
 function _M.print_arr(arr)
-    for key, val in pairs(arr) do
+    for key, val in ipairs(arr) do
         if type(val) == "table" then
             ngx.say(key, ": ", table.concat(val, ", "))
         else
@@ -45,7 +45,7 @@ end
 --
 function _M.array_filter(arr)
     local sub_tab = {};
-    for key, val in pairs(arr) do
+    for key, val in ipairs(arr) do
         if val ~= "" then
             table.insert(sub_tab, val)
         end
@@ -58,11 +58,7 @@ end
 -- @param arr
 --
 function _M.lua_string_merge(split_char, arr)
-    local str = "";
-    for k, v in pairs(arr) do
-        str = str .. split_char .. v
-    end
-    return str
+    return table.concat(arr, split_char)
 end
 
 return _M
