@@ -62,12 +62,13 @@ function _K:run()
 
     self:hook_run(container['routerStartup'])
     ctr_file = app_config['ctr_path'] .. container['ctr_file'];
+    ngx.say(ctr_file)
     self:hook_run(container['routerShutdown'])
 
     local ctr_cache = ngx.shared.ctrs:get(ctr_file)
 
     if ctr_cache == nil then
-        local ctr_realpath = root_path .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
+        local ctr_realpath = root_path .. '/' .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
         local file = io.open(ctr_realpath, "r")
         if file == nil then
             ngx.shared.ctrs:set(ctr_file, 0)
@@ -81,8 +82,9 @@ function _K:run()
     end
 
     local ctr = require(ctr_file)
+    container['ctr_content'] = ctr
     self:hook_run(container['preDispatch'])
-    ctr:new()
+    container['ctr_content']:new()
     self:hook_run(container['postDispatch'])
 end
 

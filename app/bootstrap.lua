@@ -5,7 +5,7 @@
 -- Time: 下午8:55
 --
 
-local _B = { _VERSION = 0.1 }
+local _B = {}
 
 function _B:initDb()
     ngx.say("Db init")

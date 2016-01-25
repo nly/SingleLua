@@ -5,7 +5,7 @@
 -- Time: 下午1:40
 --
 
-local _PLA = { _VERSION = 0.1 }
+local _PLA = {}
 
 --- register all hook function
 --

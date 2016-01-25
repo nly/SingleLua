@@ -18,6 +18,8 @@ end
 --
 function _M:index()
     ngx.say("controller index");
+    -- self:succ("", "", { 1, 2, 3 })
+    -- self:error("", "", { 4, 5, 6 })
 end
 
 return _M

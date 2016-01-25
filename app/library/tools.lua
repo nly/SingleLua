@@ -5,7 +5,7 @@
 -- Time: 下午1:47
 --
 
-local _M = { _VERSION = 0.1 }
+local _M = {}
 
 --- string explode
 -- @param split_char
