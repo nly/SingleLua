@@ -5,16 +5,16 @@
 -- Time: 下午12:11
 --
 
-app_config = require(app_path .. ".config.app")
-tools = require(app_config["lib_path"] .. ".tools")
-container = require(app_config["lib_path"] .. ".container")
+app_config = require(app_path .. "config.app")
+tools = require(app_config["lib_path"] .. "tools")
+container = require(app_config["lib_path"] .. "container")
 
 local _K = { _VERSION = 0.1 }
 
 --- call bootstrap function list
 --
 function _K:bootstrap()
-    local bootstrap = require(app_path .. ".bootstrap")
+    local bootstrap = require(app_path .. "bootstrap")
     for k, v in pairs(bootstrap) do
         if string.sub(k, 1, 4) == "init" then
             v()
@@ -47,7 +47,7 @@ function _K:run()
 
     -- default index
     if ctr_file == "" then
-        ctr_file = ".index"
+        ctr_file = "index"
     end
 
     container['ctr_file'] = ctr_file

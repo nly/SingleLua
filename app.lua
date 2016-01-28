@@ -9,7 +9,7 @@
 local env = "dev"
 
 root_path = ngx.var.document_root
-app_path = "app"
+app_path = "app."
 
 local kernel = require(app_path .. ".kernel")
 

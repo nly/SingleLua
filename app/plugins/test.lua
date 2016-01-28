@@ -5,7 +5,7 @@
 -- Time: 下午2:06
 --
 
-local PLA = require(app_config["plugin_path"] .. ".abstract")
+local PLA = require(app_config["plugin_path"] .. "abstract")
 local _P = PLA
 
 function _P:routerStartup()

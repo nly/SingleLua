@@ -11,9 +11,9 @@
 -- @field plugin_path
 --
 local _C = {
-    lib_path = app_path .. ".library",
-    ctr_path = app_path .. ".controllers",
-    plugin_path = app_path .. ".plugins"
+    lib_path = app_path .. "library.",
+    ctr_path = app_path .. "controllers.",
+    plugin_path = app_path .. "plugins."
 }
 
 return _C

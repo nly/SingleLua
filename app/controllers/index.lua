@@ -5,7 +5,7 @@
 -- Time: 下午1:53
 --
 
-local CTR = require(app_config["ctr_path"] .. ".abstract")
+local CTR = require(app_config["ctr_path"] .. "abstract")
 local _M = CTR
 
 --- test init action
