@@ -11,13 +11,13 @@ local _M = CTR
 --- test init action
 --
 function _M:init()
-    ngx.say("controller init");
+    -- ngx.say("controller init");
 end
 
 --- test index action
 --
 function _M:index()
-    ngx.say("controller index");
+    ngx.say("<h1>Hello SingleLua</h1>");
     -- self:succ("", "", { 1, 2, 3 })
     -- self:error("", "", { 4, 5, 6 })
 end

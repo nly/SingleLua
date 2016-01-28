@@ -62,7 +62,6 @@ function _K:run()
 
     self:hook_run(container['routerStartup'])
     ctr_file = app_config['ctr_path'] .. container['ctr_file'];
-    ngx.say(ctr_file)
     self:hook_run(container['routerShutdown'])
 
     local ctr_cache = ngx.shared.ctrs:get(ctr_file)

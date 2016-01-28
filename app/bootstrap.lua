@@ -8,14 +8,14 @@
 local _B = {}
 
 function _B:initDb()
-    ngx.say("Db init")
+    -- ngx.say("Db init")
     local testPlugin = require(app_config["plugin_path"] .. ".test")
     testPlugin:register()
 end
 
 function _B:initTest()
-    ngx.say(container['ctr_file'])
-    ngx.say("Test init")
+    -- ngx.say(container['ctr_file'])
+    -- ngx.say("Test init")
 end
 
 return _B;
