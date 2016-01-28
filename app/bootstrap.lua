@@ -9,7 +9,7 @@ local _B = {}
 
 function _B:initDb()
     ngx.say("Db init")
-    local testPlugin = require(app_config["plugin_path"] .. ".test")
+    local testPlugin = require(app_config["plugin_path"] .. "test")
     testPlugin:register()
 end
 

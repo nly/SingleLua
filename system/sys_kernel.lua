@@ -1,13 +1,9 @@
 --
 -- Created by IntelliJ IDEA.
 -- User: leandre
--- Date: 16/1/15
--- Time: 下午12:11
+-- Date: 16/1/28
+-- Time: 下午1:48
 --
-
-app_config = require(app_path .. ".config.app")
-tools = require(app_config["lib_path"] .. ".tools")
-container = require(app_config["lib_path"] .. ".container")
 
 local _K = { _VERSION = 0.1 }
 
@@ -42,12 +38,12 @@ end
 --- kernel run
 --
 function _K:run()
-    local uri_arr = tools.array_filter(tools.lua_string_split("/", ngx.var.uri))
-    local ctr_file = tools.lua_string_merge(".", uri_arr);
+    local uri_arr = sys_tools.array_filter(sys_tools.lua_string_split("/", ngx.var.uri))
+    local ctr_file = sys_tools.lua_string_merge(".", uri_arr);
 
     -- default index
     if ctr_file == "" then
-        ctr_file = ".index"
+        ctr_file = "index"
     end
 
     container['ctr_file'] = ctr_file
@@ -62,13 +58,12 @@ function _K:run()
 
     self:hook_run(container['routerStartup'])
     ctr_file = app_config['ctr_path'] .. container['ctr_file'];
-    ngx.say(ctr_file)
     self:hook_run(container['routerShutdown'])
 
     local ctr_cache = ngx.shared.ctrs:get(ctr_file)
 
     if ctr_cache == nil then
-        local ctr_realpath = root_path .. '/' .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
+        local ctr_realpath = root_path .. '/' .. sys_tools.lua_string_merge("/", sys_tools.lua_string_split("%.", ctr_file)) .. ".lua"
         local file = io.open(ctr_realpath, "r")
         if file == nil then
             ngx.shared.ctrs:set(ctr_file, 0)
@@ -89,3 +84,4 @@ function _K:run()
 end
 
 return _K;
+

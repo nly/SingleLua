@@ -1,20 +1,20 @@
 --
 -- Created by IntelliJ IDEA.
 -- User: leandre
--- Date: 16/1/21
--- Time: 下午1:41
+-- Date: 16/1/28
+-- Time: 下午1:46
 --
 
-local _CTR = {}
+sys_controller = {}
 
-local CODE = {
+sys_code = {
     SUCC = 1000,
     ERROR = 1001
 }
 
 --- main function of controllers
 --
-function _CTR:new()
+function sys_controller:new()
     -- init action
     if type(self["init"]) == "function" then
         self:init()
@@ -30,10 +30,10 @@ end
 -- @param msg
 -- @param data
 --
-function _CTR:succ(code, msg, data)
-    local json = require(app_config["lib_path"] .. ".json")
+function sys_controller:succ(code, msg, data)
+    local json = require(sys_lib_path .. ".json")
     if code == "" then
-        code = CODE['SUCC']
+        code = sys_code['SUCC']
     end
     if msg == "" then
         msg = "ok"
@@ -50,10 +50,10 @@ end
 -- @param msg
 -- @param data
 --
-function _CTR:error(code, msg, data)
-    local json = require(app_config["lib_path"] .. ".json")
+function sys_controller:error(code, msg, data)
+    local json = require(sys_lib_path .. ".json")
     if code == "" then
-        code = CODE['ERROR']
+        code = sys_code['ERROR']
     end
     if msg == "" then
         msg = "error"
@@ -65,4 +65,5 @@ function _CTR:error(code, msg, data)
     return true
 end
 
-return _CTR;
+return sys_controller;
+

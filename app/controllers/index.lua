@@ -5,8 +5,7 @@
 -- Time: 下午1:53
 --
 
-local CTR = require(app_config["ctr_path"] .. ".abstract")
-local _M = CTR
+local _M = sys_controller
 
 --- test init action
 --

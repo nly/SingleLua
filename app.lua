@@ -6,7 +6,10 @@
 --
 
 root_path = ngx.var.document_root
-app_path = "app"
+app_path = "app."
 
-local kernel = require(app_path .. ".kernel")
+app_config = require(app_path .. "config.app")
+container = require(app_config["lib_path"] .. ".container")
+
+local kernel = require(sys_path .. ".sys_kernel")
 kernel:run();
