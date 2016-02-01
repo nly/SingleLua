@@ -1,5 +1,5 @@
 --
--- Created by IntelliJ IDEA.
+-- app config
 -- User: leandre
 -- Date: 16/1/15
 -- Time: 下午12:17

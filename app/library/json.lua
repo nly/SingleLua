@@ -1,5 +1,5 @@
 --
--- Created by IntelliJ IDEA.
+-- json
 -- http://www.kyne.com.au/~mark/software/lua-cjson.php
 -- User: leandre
 -- Date: 16/1/25

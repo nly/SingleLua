@@ -1,5 +1,5 @@
 --
--- Created by IntelliJ IDEA.
+-- app
 -- User: leandre
 -- Date: 16/1/15
 -- Time: 下午12:17
@@ -11,7 +11,7 @@ local env = "dev"
 root_path = ngx.var.document_root
 app_path = "app."
 
-local kernel = require(app_path .. ".kernel")
+local kernel = require(app_path .. "kernel")
 
 local status, error = pcall(function()
     kernel:run();

@@ -1,5 +1,5 @@
 --
--- Created by IntelliJ IDEA.
+-- index controller
 -- User: leandre
 -- Date: 16/1/13
 -- Time: 下午1:53
