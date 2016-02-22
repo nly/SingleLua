@@ -5,16 +5,14 @@
 -- Time: 下午12:11
 --
 
-app_config = require(app_path .. "config.app")
-tools = require(app_config["lib_path"] .. "tools")
-container = require(app_config["lib_path"] .. "container")
-
 local _K = { _VERSION = 0.1 }
 
 --- call bootstrap function list
 --
 function _K:bootstrap()
+    local app_path = ngx.ctx.app_path
     local bootstrap = require(app_path .. "bootstrap")
+
     for k, v in pairs(bootstrap) do
         if string.sub(k, 1, 4) == "init" then
             v()
@@ -42,6 +40,16 @@ end
 --- kernel run
 --
 function _K:run()
+
+    ngx.ctx.app_config = require(ngx.ctx.app_path .. "config.app")
+    ngx.ctx.tools = require(ngx.ctx.app_config["lib_path"] .. "tools")
+    ngx.ctx.container = require(ngx.ctx.app_config["lib_path"] .. "container")
+
+    local tools = ngx.ctx.tools
+    local container = ngx.ctx.container
+    local app_config = ngx.ctx.app_config
+    local root_path = ngx.ctx.root_path
+
     local uri_arr = tools.array_filter(tools.lua_string_split("/", ngx.var.uri))
     local ctr_file = tools.lua_string_merge(".", uri_arr)
 
@@ -49,6 +57,7 @@ function _K:run()
     if ctr_file == "" then
         ctr_file = "index"
     end
+
 
     container['ctr_file'] = ctr_file
 

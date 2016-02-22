@@ -5,6 +5,7 @@
 -- Time: 下午2:06
 --
 
+local app_config = ngx.ctx.app_config
 local PLA = require(app_config["plugin_path"] .. "abstract")
 local _P = PLA
 

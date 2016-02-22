@@ -5,6 +5,7 @@
 -- Time: 下午1:53
 --
 
+local app_config = ngx.ctx.app_config
 local CTR = require(app_config["ctr_path"] .. "abstract")
 local _M = CTR
 

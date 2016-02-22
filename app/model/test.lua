@@ -6,10 +6,11 @@
 --
 
 local _M = {}
-local mysql = container["mysql"];
+local container = ngx.ctx.container
+local mysql = container["mysql"]
 
 function _M:getTest()
-    local res = mysql:query("alpha", "select * from users;")
+    local res = mysql:query("alpha", "select * from users")
     if res then
         return res
     end

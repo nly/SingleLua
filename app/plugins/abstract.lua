@@ -10,6 +10,7 @@ local _PLA = {}
 --- register all hook function
 --
 function _PLA:register()
+    local container = ngx.ctx.container
     for k, v in pairs(self) do
         if k == "routerStartup" then
             table.insert(container['routerStartup'], v)

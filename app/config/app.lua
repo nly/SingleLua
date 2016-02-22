@@ -5,6 +5,8 @@
 -- Time: 下午12:17
 --
 
+local app_path = ngx.ctx.app_path
+
 --- app config
 -- @field lib_path
 -- @field ctr_path

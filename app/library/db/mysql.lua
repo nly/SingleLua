@@ -11,6 +11,7 @@ local _config = {}
 --- init db config
 --
 function _M:init()
+    local app_path = ngx.ctx.app_path
     _config = require(app_path .. "config.mysql")
     return _config
 end
