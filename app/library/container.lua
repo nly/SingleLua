@@ -9,5 +9,5 @@
 --
 local _C = {}
 
-return _C;
+return _C
 

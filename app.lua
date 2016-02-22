@@ -14,7 +14,7 @@ app_path = "app."
 local kernel = require(app_path .. "kernel")
 
 local status, error = pcall(function()
-    kernel:run();
+    kernel:run()
 end)
 
 if status == false then

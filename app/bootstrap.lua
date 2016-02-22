@@ -8,6 +8,9 @@
 local _B = {}
 
 function _B:initDb()
+    local mysql = require(app_config["lib_path"] .. "db.mysql")
+    mysql:init()
+    container["mysql"] = mysql; -- put mysql to container
     -- ngx.say("Db init")
     local testPlugin = require(app_config["plugin_path"] .. "test")
     testPlugin:register()
@@ -18,4 +21,4 @@ function _B:initTest()
     -- ngx.say("Test init")
 end
 
-return _B;
+return _B
