@@ -58,7 +58,6 @@ function _K:run()
         ctr_file = "index"
     end
 
-
     container['ctr_file'] = ctr_file
 
     -- init all hook functions table
@@ -89,10 +88,11 @@ function _K:run()
         self:not_found()
     end
 
+    package.loaded[ctr_file] = nil -- reload the controller module
     local ctr = require(ctr_file)
-    container['ctr_content'] = ctr
+    container["ctr_content"] = ctr;
     self:hook_run(container['preDispatch'])
-    container['ctr_content']:new()
+    ctr:new()
     self:hook_run(container['postDispatch'])
 end
 
