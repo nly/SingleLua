@@ -7,7 +7,8 @@
 
 local app_config = ngx.ctx.app_config
 local CTR = require(app_config["ctr_path"] .. "abstract")
-local _M = CTR
+local _M = {}
+setmetatable(_M, {__index = CTR})
 
 --- test init action
 --

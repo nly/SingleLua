@@ -88,7 +88,6 @@ function _K:run()
         self:not_found()
     end
 
-    package.loaded[ctr_file] = nil -- reload the controller module
     local ctr = require(ctr_file)
     container["ctr_content"] = ctr;
     self:hook_run(container['preDispatch'])

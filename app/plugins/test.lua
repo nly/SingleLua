@@ -7,7 +7,8 @@
 
 local app_config = ngx.ctx.app_config
 local PLA = require(app_config["plugin_path"] .. "abstract")
-local _P = PLA
+local _P = {}
+setmetatable(_P, {__index = PLA})
 
 function _P:routerStartup()
     -- ngx.say("routerStartup")
