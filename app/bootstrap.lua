@@ -9,7 +9,7 @@ local _B = {}
 
 function _B:initDb()
     local app_config = ngx.ctx.app_config
-    local container = ngx.ctx.container
+    local container = require(ngx.ctx.app_config["lib_path"] .. "container")
 
     local mysql = require(app_config["lib_path"] .. "db.mysql")
     mysql:init()

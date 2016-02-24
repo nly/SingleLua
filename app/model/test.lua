@@ -6,7 +6,7 @@
 --
 
 local _M = { pool_name = "alpha" }
-local container = ngx.ctx.container
+local container = require(ngx.ctx.app_config["lib_path"] .. "container")
 local mysql = container["mysql"]
 
 function _M:getTest()

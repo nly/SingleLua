@@ -42,13 +42,11 @@ end
 function _K:run()
 
     ngx.ctx.app_config = require(ngx.ctx.app_path .. "config.app")
-    ngx.ctx.tools = require(ngx.ctx.app_config["lib_path"] .. "tools")
-    ngx.ctx.container = require(ngx.ctx.app_config["lib_path"] .. "container")
 
-    local tools = ngx.ctx.tools
-    local container = ngx.ctx.container
-    local app_config = ngx.ctx.app_config
     local root_path = ngx.ctx.root_path
+    local app_config = ngx.ctx.app_config
+    local tools = require(ngx.ctx.app_config["lib_path"] .. "tools")
+    local container = require(ngx.ctx.app_config["lib_path"] .. "container")
 
     local uri_arr = tools.array_filter(tools.lua_string_split("/", ngx.var.uri))
     local ctr_file = tools.lua_string_merge(".", uri_arr)
