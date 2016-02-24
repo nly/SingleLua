@@ -20,8 +20,7 @@ function _M:connect(pool_name, is_slave)
     local mysql = require("resty.mysql")
     local db, err = mysql:new()
     if not db then
-        ngx.say("failed to instantiate mysql: ", err)
-        return
+        return ngx.ERROR, err
     end
 
     db:set_timeout(1000) -- 1 sec
@@ -43,8 +42,7 @@ function _M:connect(pool_name, is_slave)
     }
 
     if not ok then
-        ngx.say("failed to connect: ", err, ": ", errno, " ", sqlstate)
-        return false
+        return ngx.ERROR, err, errno, sqlstate
     end
 
     return db
@@ -52,7 +50,7 @@ end
 
 function _M:query(poolname, sql)
     if poolname == "" or sql == "" then
-        return false
+        return ngx.ERROR
     end
 
     local db
@@ -63,22 +61,20 @@ function _M:query(poolname, sql)
     end
 
     if not db then
-        return false
+        return ngx.ERROR
     end
 
 
     local res, err, errno, sqlstate = db:query(sql)
     if not res then
-        ngx.say("bad result: ", err, ": ", errno, ": ", sqlstate, ".")
-        return false
+        return ngx.ERROR, err, errno, sqlstate
     end
 
     -- put it into the connection pool of size 100,
     -- with 10 seconds max idle timeout
     local ok, err = db:set_keepalive(10000, 100)
     if not ok then
-        ngx.say("failed to set keepalive: ", err)
-        return false
+        return ngx.ERROR, err
     end
 
     return res

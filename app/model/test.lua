@@ -5,16 +5,12 @@
 -- Time: 下午3:24
 --
 
-local _M = {}
+local _M = { pool_name = "alpha" }
 local container = ngx.ctx.container
 local mysql = container["mysql"]
 
 function _M:getTest()
-    local res = mysql:query("alpha", "select * from users")
-    if res then
-        return res
-    end
-    return false
+    return mysql:query(self.pool_name, "select * from users")
 end
 
 return _M
