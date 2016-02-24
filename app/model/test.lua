@@ -10,7 +10,12 @@ local container = ngx.ctx.container
 local mysql = container["mysql"]
 
 function _M:getTest()
-    return mysql:query(self.pool_name, "select * from users")
+    local res, err = mysql:query(self.pool_name, "select * from users")
+    if res == ngx.ERROR then
+        ngx.log(ngx.ERR, err)
+    end
+
+    return res, err
 end
 
 return _M

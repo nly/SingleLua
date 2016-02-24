@@ -16,6 +16,10 @@ function _M:init()
     return _config
 end
 
+--- connect to mysql db
+-- @param pool_name
+-- @param is_slave
+--
 function _M:connect(pool_name, is_slave)
     local mysql = require("resty.mysql")
     local db, err = mysql:new()
@@ -48,6 +52,10 @@ function _M:connect(pool_name, is_slave)
     return db
 end
 
+--- query a SQL
+-- @param poolname
+-- @param sql
+--
 function _M:query(poolname, sql)
     if poolname == "" or sql == "" then
         return ngx.ERROR
