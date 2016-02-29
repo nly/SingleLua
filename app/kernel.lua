@@ -74,7 +74,7 @@ function _K:run()
     -- request params
     container['request'] = self:request()
 
-    self:bootstrap(container['request'])
+    self:bootstrap()
 
     self:hook_run(container['routerStartup'])
     ctr_file = app_config['ctr_path'] .. container['ctr_file']

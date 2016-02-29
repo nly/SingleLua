@@ -8,7 +8,7 @@
 local app_config = require("app.config.app")
 local _B = {}
 
-function _B:initDb(request)
+function _B:initDb()
     local container = require(app_config["lib_path"] .. "container")
 
     local mysql = require(app_config["lib_path"] .. "db.mysql")
