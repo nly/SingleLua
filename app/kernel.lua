@@ -36,6 +36,18 @@ function _K:not_found()
     ngx.exit(ngx.HTTP_NOT_FOUND)
 end
 
+--- handle request
+--
+function _K:request()
+    ngx.req.read_body()
+    return {
+        http_method = ngx.req.get_method(),
+        http_headers = ngx.req.get_headers(),
+        http_get_params = ngx.req.get_uri_args(),
+        http_post_params = ngx.req.get_post_args()
+    }
+end
+
 --- kernel run
 --
 function _K:run()
@@ -59,7 +71,10 @@ function _K:run()
     container['preDispatch'] = {}
     container['postDispatch'] = {}
 
-    self:bootstrap()
+    -- request params
+    container['request'] = self:request()
+
+    self:bootstrap(container['request'])
 
     self:hook_run(container['routerStartup'])
     ctr_file = app_config['ctr_path'] .. container['ctr_file']
