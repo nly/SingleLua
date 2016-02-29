@@ -6,7 +6,8 @@
 -- https://github.com/cloudflare/lua-resty-cookie
 --
 
-local ck = require(ngx.ctx.app_config["lib_path"] .. "resty.cookie")
+local app_config = require("app.config.app")
+local ck = require(app_config["lib_path"] .. "resty.cookie")
 local cookie, err = ck:new()
 if not cookie then
     ngx.log(ngx.ERR, err)
@@ -15,6 +16,15 @@ end
 
 local _M = { ck = cookie }
 
+--- set a cookie
+-- @param name
+-- @param value
+-- @param expires
+-- @param path
+-- @param domain
+-- @param secure
+-- @param httponly
+--
 function _M:set(name, value, expires, path, domain, secure, httponly)
     if not name or name == "" then
         return ngx.ERROR, "cookie name must not be empty"
@@ -71,7 +81,5 @@ function _M:get_all()
     end
     return values
 end
-
-
 
 return _M

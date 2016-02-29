@@ -5,8 +5,9 @@
 -- Time: 下午3:24
 --
 
+local app_config = require("app.config.app")
 local _M = { pool_name = "alpha" }
-local container = require(ngx.ctx.app_config["lib_path"] .. "container")
+local container = require(app_config["lib_path"] .. "container")
 local mysql = container["mysql"]
 
 function _M:getTest()

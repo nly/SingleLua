@@ -5,11 +5,11 @@
 -- Time: 下午8:55
 --
 
+local app_config = require("app.config.app")
 local _B = {}
 
 function _B:initDb()
-    local app_config = ngx.ctx.app_config
-    local container = require(ngx.ctx.app_config["lib_path"] .. "container")
+    local container = require(app_config["lib_path"] .. "container")
 
     local mysql = require(app_config["lib_path"] .. "db.mysql")
     mysql:init()

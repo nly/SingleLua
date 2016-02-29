@@ -5,10 +5,10 @@
 -- Time: 下午1:53
 --
 
-local app_config = ngx.ctx.app_config
+local app_config = require("app.config.app")
 local CTR = require(app_config["ctr_path"] .. "abstract")
 local _M = {}
-setmetatable(_M, {__index = CTR})
+setmetatable(_M, { __index = CTR })
 
 --- test init action
 --

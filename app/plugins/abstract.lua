@@ -5,12 +5,13 @@
 -- Time: 下午1:40
 --
 
+local app_config = require("app.config.app")
 local _PLA = {}
 
 --- register all hook function
 --
 function _PLA:register()
-    local container = require(ngx.ctx.app_config["lib_path"] .. "container")
+    local container = require(app_config["lib_path"] .. "container")
     for k, v in pairs(self) do
         if k == "routerStartup" then
             table.insert(container['routerStartup'], v)

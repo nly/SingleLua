@@ -5,10 +5,10 @@
 -- Time: 下午2:06
 --
 
-local app_config = ngx.ctx.app_config
+local app_config = require("app.config.app")
 local PLA = require(app_config["plugin_path"] .. "abstract")
 local _P = {}
-setmetatable(_P, {__index = PLA})
+setmetatable(_P, { __index = PLA })
 
 function _P:routerStartup()
     -- ngx.say("routerStartup")

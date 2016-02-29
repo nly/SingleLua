@@ -8,10 +8,7 @@
 -- dev / pro
 local env = "dev"
 
-ngx.ctx.root_path = ngx.var.document_root
-ngx.ctx.app_path = "app."
-
-local kernel = require(ngx.ctx.app_path .. "kernel")
+local kernel = require("app.kernel")
 
 local status, error = pcall(function()
     kernel:run()

@@ -10,8 +10,7 @@ local _K = { _VERSION = 0.1 }
 --- call bootstrap function list
 --
 function _K:bootstrap()
-    local app_path = ngx.ctx.app_path
-    local bootstrap = require(app_path .. "bootstrap")
+    local bootstrap = require("app.bootstrap")
 
     for k, v in pairs(bootstrap) do
         if string.sub(k, 1, 4) == "init" then
@@ -40,11 +39,7 @@ end
 --- kernel run
 --
 function _K:run()
-
-    ngx.ctx.app_config = require(ngx.ctx.app_path .. "config.app")
-
-    local root_path = ngx.ctx.root_path
-    local app_config = ngx.ctx.app_config
+    local app_config = require("app.config.app")
     local tools = require(app_config["lib_path"] .. "tools")
     local container = require(app_config["lib_path"] .. "container")
 
@@ -73,7 +68,7 @@ function _K:run()
     local ctr_cache = ngx.shared.ctrs:get(ctr_file)
 
     if ctr_cache == nil then
-        local ctr_realpath = root_path .. '/' .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
+        local ctr_realpath = ngx.var.document_root .. '/' .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
         local file = io.open(ctr_realpath, "r")
         if file == nil then
             ngx.shared.ctrs:set(ctr_file, 0)

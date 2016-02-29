@@ -31,7 +31,7 @@ end
 -- @param data
 --
 function _CTR:succ(code, msg, data)
-    local app_config = ngx.ctx.app_config
+    local app_config = require("app.config.app")
     local json = require(app_config["lib_path"] .. "json")
     if code == "" then
         code = CODE['SUCC']
@@ -52,7 +52,7 @@ end
 -- @param data
 --
 function _CTR:error(code, msg, data)
-    local app_config = ngx.ctx.app_config
+    local app_config = require("app.config.app")
     local json = require(app_config["lib_path"] .. "json")
     if code == "" then
         code = CODE['ERROR']

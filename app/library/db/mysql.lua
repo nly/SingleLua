@@ -11,7 +11,7 @@ local _config = {}
 --- init db config
 --
 function _M:init()
-    local app_path = ngx.ctx.app_path
+    local app_path = 'app.'
     _config = require(app_path .. "config.mysql")
     return _config
 end
@@ -61,17 +61,16 @@ function _M:query(poolname, sql)
         return ngx.ERROR
     end
 
-    local db
+    local db, err
     if string.find(sql, "select") == 1 then
-        db = self:connect(poolname, true) -- slave db
+        db, err = self:connect(poolname, true) -- slave db
     else
-        db = self:connect(poolname, false) -- master db
+        db, err = self:connect(poolname, false) -- master db
     end
 
-    if not db then
-        return ngx.ERROR
+    if db == ngx.ERROR then
+        return ngx.ERROR, err
     end
-
 
     local res, err, errno, sqlstate = db:query(sql)
     if not res then
