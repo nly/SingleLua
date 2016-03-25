@@ -10,8 +10,7 @@ local _config = {}
 --- init memcache config
 --
 function _M:init()
-    local app_path = 'app.'
-    _config = require(app_path .. "config.memcache")
+    _config = require("config.memcache")
     return _config
 end
 

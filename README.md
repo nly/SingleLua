@@ -4,9 +4,8 @@ add this to nginx http block:
 
 ~~~
 http {
-    lua_package_path '/Users/leandre/Works/SingleLua/?.lua;;';
-
-    lua_shared_dict ctrs 2m;
+    # your path to framework
+    lua_package_path '/Users/leandre/Works/SingleLua/?.lua;/Users/leandre/Works/SingleLua/app/?.lua;/Users/leandre/Works/SingleLua/app/library/?.lua;;';
 }
 ~~~
 

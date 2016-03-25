@@ -5,8 +5,7 @@
 -- Time: 下午2:06
 --
 
-local app_config = require("app.config.app")
-local PLA = require(app_config["plugin_path"] .. "abstract")
+local PLA = require("plugins.abstract")
 local _P = {}
 setmetatable(_P, { __index = PLA })
 

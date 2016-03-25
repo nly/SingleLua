@@ -8,9 +8,8 @@
 
 local _M = {}
 
-local app_config = require("app.config.app")
-local container = require(app_config["lib_path"] .. "container")
-local json = require(app_config["lib_path"] .. "json")
+local container = require("container")
+local json = require("json")
 
 local mysql = container["mysql"]
 local memcache = container["memcache"]

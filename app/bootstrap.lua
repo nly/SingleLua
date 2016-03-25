@@ -5,29 +5,28 @@
 -- Time: 下午8:55
 --
 
-local app_config = require("app.config.app")
 local _B = {}
 
 function _B:initDb()
-    local container = require(app_config["lib_path"] .. "container")
-
-    local mysql = require(app_config["lib_path"] .. "db.mysql")
-    mysql:init()
-    container["mysql"] = mysql -- put mysql to container
-
-    local memcache = require(app_config["lib_path"] .. "cache.memcache")
-    memcache:init()
-    container["memcache"] = memcache -- put memcache to container
-
-    -- ngx.say("Db init")
-    local testPlugin = require(app_config["plugin_path"] .. "test")
-    testPlugin:register()
+--    local container = require("container")
+--
+--    local mysql = require("db.mysql")
+--    mysql:init()
+--    container["mysql"] = mysql -- put mysql to container
+--
+--    local memcache = require("cache.memcache")
+--    memcache:init()
+--    container["memcache"] = memcache -- put memcache to container
+--
+--    -- ngx.say("Db init")
+--    local testPlugin = require("plugins.test")
+--    testPlugin:register()
 end
 
 function _B:initTest()
---    local container = require(app_config["lib_path"] .. "container")
+--    local container = require("container")
 --    local request = container['request']
---    local tools = require(app_config["lib_path"] .. "tools")
+--    local tools = require("tools")
 --    ngx.say(request.http_method)
 --    ngx.say(request.http_get_params.a)
 --    tools.print_table(request.http_headers)

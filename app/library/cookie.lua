@@ -6,8 +6,7 @@
 -- https://github.com/cloudflare/lua-resty-cookie
 --
 
-local app_config = require("app.config.app")
-local ck = require(app_config["lib_path"] .. "resty.cookie")
+local ck = require("resty.cookie")
 local cookie, err = ck:new()
 if not cookie then
     ngx.log(ngx.ERR, err)

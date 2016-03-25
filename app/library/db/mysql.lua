@@ -11,8 +11,7 @@ local _config = {}
 --- init db config
 --
 function _M:init()
-    local app_path = 'app.'
-    _config = require(app_path .. "config.mysql")
+    _config = require("config.mysql")
     return _config
 end
 

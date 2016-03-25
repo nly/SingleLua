@@ -10,7 +10,7 @@ local _K = { _VERSION = 0.1 }
 --- call bootstrap function list
 --
 function _K:bootstrap()
-    local bootstrap = require("app.bootstrap")
+    local bootstrap = require("bootstrap")
 
     for k, v in pairs(bootstrap) do
         if string.sub(k, 1, 4) == "init" then
@@ -51,9 +51,8 @@ end
 --- kernel run
 --
 function _K:run()
-    local app_config = require("app.config.app")
-    local tools = require(app_config["lib_path"] .. "tools")
-    local container = require(app_config["lib_path"] .. "container")
+    local tools = require("tools")
+    local container = require("container")
 
     local uri_arr = tools.array_filter(tools.lua_string_split("/", ngx.var.uri))
     local ctr_file = tools.lua_string_merge(".", uri_arr)
@@ -77,24 +76,8 @@ function _K:run()
     self:bootstrap()
 
     self:hook_run(container['routerStartup'])
-    ctr_file = app_config['ctr_path'] .. container['ctr_file']
+    ctr_file = "controllers." .. container['ctr_file']
     self:hook_run(container['routerShutdown'])
-
-    local ctr_cache = ngx.shared.ctrs:get(ctr_file)
-
-    if ctr_cache == nil then
-        local ctr_realpath = ngx.var.document_root .. '/' .. tools.lua_string_merge("/", tools.lua_string_split("%.", ctr_file)) .. ".lua"
-        local file = io.open(ctr_realpath, "r")
-        if file == nil then
-            ngx.shared.ctrs:set(ctr_file, 0)
-            self:not_found()
-        else
-            ngx.shared.ctrs:set(ctr_file, 1)
-        end
-        io.close(file)
-    elseif ctr_cache == 0 then
-        self:not_found()
-    end
 
     local ctr = require(ctr_file)
     container["ctr_content"] = ctr;
