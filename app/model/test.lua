@@ -6,12 +6,12 @@
 --
 
 local app_config = require("app.config.app")
-local _M = { pool_name = "alpha" }
+local _M = {}
 local container = require(app_config["lib_path"] .. "container")
 local mysql = container["mysql"]
 
 function _M:getTest()
-    local res, err = mysql:query(self.pool_name, "select * from users")
+    local res, err = mysql:query("select * from users")
     if res == ngx.ERROR then
         ngx.log(ngx.ERR, err)
     end

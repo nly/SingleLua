@@ -53,13 +53,15 @@ function _M:connect(pool_name, is_slave)
 end
 
 --- query a SQL
--- @param poolname
 -- @param sql
+-- @param poolname
 --
-function _M:query(poolname, sql)
-    if poolname == "" or sql == "" then
+function _M:query(sql, poolname)
+    if sql == "" then
         return ngx.ERROR
     end
+
+    local poolname = poolname or "default"
 
     local db, err
     if string.find(sql, "select") == 1 then
